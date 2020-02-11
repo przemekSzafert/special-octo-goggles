@@ -50,7 +50,7 @@
         dark
       >
         <v-app-bar-nav-icon @click="toggleSideNav"></v-app-bar-nav-icon>
-        <v-toolbar-title>
+        <v-toolbar-title class="hidden-xs-only"> 
           <router-link
             to="/"
             tag="span"
@@ -58,7 +58,7 @@
           >
             VueShare
           </router-link>
-        </v-toolbar-title class="hidden-xs-only">
+        </v-toolbar-title>
         <v-spacer></v-spacer>
 
         <!--Search input-->
@@ -93,7 +93,9 @@
     <!-- App Content -->
     <main>
       <v-container class="mt-4">
-        <router-view />
+        <transition name="fade">
+          <router-view />
+        </transition>
       </v-container>
     </main>
   </v-app>
@@ -131,3 +133,21 @@ export default {
   }
 };
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: all;
+  transition-duration: .25s;
+}
+
+.fade-enter-active{
+  transition-delay: .25s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+  transform: translateX(-25px);
+}
+</style>
